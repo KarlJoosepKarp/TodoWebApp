@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Change all todos</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/todos/change}" th:object="${form}"
+      method="post">
+    <fieldset>
+        <table>
+            <thead>
+            <tr>
+                <th class="header"> ID</th>
+                <th class="header"> Name</th>
+                <th> Description</th>
+                <th> Done?</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="todo, itemStat : *{todos}">
+                <td><span th:text="*{todos[__${itemStat.index}__].id}" /></td>
+                <input hidden th:field="*{todos[__${itemStat.index}__].id}" />
+                <td><input th:field="*{todos[__${itemStat.index}__].name}" /></td>
+                <td><input th:field="*{todos[__${itemStat.index}__].description}" /></td>
+                <td><input th:value="*{todos[__${itemStat.index}__].done}" type="checkbox" th:field="*{todos[__${itemStat.index}__].done}" /></td>
+            </tr>
+            </tbody>
+        </table>
+        <input type="submit" id="submitButton">
+    </fieldset>
+</form>
+
+</body>
+</html>

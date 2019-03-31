@@ -1,0 +1,27 @@
+logbook:
+  exclude: [ /health, /v2/**, /swagger-*/**, /webjars/** ]
+  write:
+    level: DEBUG
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: true
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
